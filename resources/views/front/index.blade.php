@@ -94,8 +94,8 @@
 <div class="container-fluid p-0 mb-5 wow fadeIn" data-wow-delay="0.1s" id="home">
     <div id="header-carousel" class="carousel slide carousel-fade" data-bs-ride="carousel">
         <div class="carousel-inner">
-            @foreach($sliders as $slider)
-                <div class="carousel-item active">
+            @foreach($sliders as $key => $slider)
+                <div class="carousel-item {{ $key === 0 ? 'active' : '' }}">
                     <img class="w-100 align-items-center" src="/images/{{$slider->image}}" alt="Image"
                          style="height: 1200px; display: block; margin-left: auto; margin-right: auto; width: 20%;">
                     <div class="carousel-caption">
