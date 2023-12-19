@@ -61,7 +61,7 @@
         <hr class="sidebar-divider">
 
         <li class="nav-item active">
-            <a class="nav-link" href="">
+            <a class="nav-link" href="{{route('about.index')}}">
                 <i class="fas fa-fw fa-tachometer-alt"></i>
                 <span>О нас</span></a>
         </li>

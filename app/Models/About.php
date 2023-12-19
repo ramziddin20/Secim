@@ -9,9 +9,7 @@ class About extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'text',
+        'title',
         'description',
-        'img',
-        'information'
     ];
 }

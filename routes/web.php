@@ -1,9 +1,9 @@
 <?php
 
+use App\Http\Controllers\AboutController;
 use App\Http\Controllers\SliderController;
-use App\Http\Controllers\SocialLinkController;
+use App\Models\About;
 use App\Models\Slider;
-use App\Models\SocialLink;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,7 +19,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     $sliders = Slider::all();
-    return view('front.index', compact('sliders'));
+    $abouts = About::all();
+    return view('front.index', compact('sliders', 'abouts'));
 });
 Route::get('admin', function () {
     return view('back.home.index');
@@ -28,9 +29,8 @@ Route::get('admin', function () {
 
 // Backend
 Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
-    Route::get('/slider', [SliderController::class, "index"])->name('slider.index');
-    Route::get('/slider/create', [SliderController::class, "create"])->name('create');
-    Route::post('/slider/upload', [SliderController::class, "store"])->name('slider.store');
+    Route::resource('/slider', SliderController::class);
+    Route::resource('/about', AboutController::class);
 });
 Auth::routes();
 

@@ -97,7 +97,7 @@
             @foreach($sliders as $key => $slider)
                 <div class="carousel-item {{ $key === 0 ? 'active' : '' }}">
                     <img class="w-100 align-items-center" src="/images/{{$slider->image}}" alt="Image"
-                         style="height: 1200px; display: block; margin-left: auto; margin-right: auto; width: 20%;">
+                         style="height: 900px;  display: block; margin-left: auto; margin-right: auto; width: 100%;">
                     <div class="carousel-caption">
                         <div class="container">
                             <div class="row justify-content-start">
@@ -113,21 +113,6 @@
                     </div>
                 </div>
             @endforeach
-            <div class="carousel-item">
-                <img class="w-100" src="img/carousel-2.jpg" alt="Image">
-                <div class="carousel-caption">
-                    <div class="container">
-                        <div class="row justify-content-start">
-                            <div class="col-lg-7">
-                                <p class="d-inline-block border border-white rounded text-danger fw-semi-bold py-1 px-3 animated slideInDown">
-                                    Welcome to Finanza</p>
-                                <h1 class="display-1 mb-4 animated slideInDown">True Financial Support For You</h1>
-                                <a href="" class="btn btn-danger py-3 px-5 animated slideInDown">Explore More</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div>
         <button class="carousel-control-prev" type="button" data-bs-target="#header-carousel"
                 data-bs-slide="prev">
@@ -155,43 +140,25 @@
                 <p class="d-inline-block border rounded text-danger fw-semi-bold py-1 px-3">О нас</p>
                 <h1 class="display-5 mb-4">Мы помогаем нашим клиентам</h1>
                 <div class="border rounded p-4">
-                    <nav>
-                        <div class="nav nav-tabs mb-3" id="nav-tab" role="tablist">
-                            <button class="nav-link fw-semi-bold active" id="nav-story-tab" data-bs-toggle="tab"
-                                    data-bs-target="#nav-story" type="button" role="tab" aria-controls="nav-story"
-                                    aria-selected="true">Story
-                            </button>
-                            <button class="nav-link fw-semi-bold" id="nav-mission-tab" data-bs-toggle="tab"
-                                    data-bs-target="#nav-mission" type="button" role="tab" aria-controls="nav-mission"
-                                    aria-selected="false">Mission
-                            </button>
-                            <button class="nav-link fw-semi-bold" id="nav-vision-tab" data-bs-toggle="tab"
-                                    data-bs-target="#nav-vision" type="button" role="tab" aria-controls="nav-vision"
-                                    aria-selected="false">Vision
-                            </button>
+                    @foreach($abouts as $key => $about)
+                        <nav>
+                            <div class="nav nav-tabs mb-3" id="nav-tab" role="tablist">
+                                <button class="nav-link fw-semi-bold {{ $key === 0 ? 'active' : '' }}"
+                                        id="" data-bs-toggle="tab"
+                                        data-bs-target="" type="button" role="tab"
+                                        aria-controls=""
+                                        aria-selected="{{ $key === 0 ? 'true' : 'false' }}">{{$about->title}}
+                                </button>
+                            </div>
+                        </nav>
+                        <div class="tab-content" id="nav-tabContent">
+                            <div class="tab-pane fade show {{ $key === 0 ? 'active' : '' }}" id=""
+                                 role="tabpanel"
+                                 aria-labelledby="">
+                                <p>{{$about->description}}</p>
+                            </div>
                         </div>
-                    </nav>
-                    <div class="tab-content" id="nav-tabContent">
-                        <div class="tab-pane fade show active" id="nav-story" role="tabpanel"
-                             aria-labelledby="nav-story-tab">
-                            <p>Tempor erat elitr rebum at clita. Diam dolor diam ipsum et tempor sit. Aliqu diam amet
-                                diam et eos labore.</p>
-                            <p class="mb-0">Diam dolor diam ipsum et tempor sit. Aliqu diam amet diam et eos labore.
-                                Clita erat ipsum et lorem et sit</p>
-                        </div>
-                        <div class="tab-pane fade" id="nav-mission" role="tabpanel" aria-labelledby="nav-mission-tab">
-                            <p>Tempor erat elitr rebum at clita. Diam dolor diam ipsum et tempor sit. Aliqu diam amet
-                                diam et eos labore.</p>
-                            <p class="mb-0">Diam dolor diam ipsum et tempor sit. Aliqu diam amet diam et eos labore.
-                                Clita erat ipsum et lorem et sit</p>
-                        </div>
-                        <div class="tab-pane fade" id="nav-vision" role="tabpanel" aria-labelledby="nav-vision-tab">
-                            <p>Tempor erat elitr rebum at clita. Diam dolor diam ipsum et tempor sit. Aliqu diam amet
-                                diam et eos labore.</p>
-                            <p class="mb-0">Diam dolor diam ipsum et tempor sit. Aliqu diam amet diam et eos labore.
-                                Clita erat ipsum et lorem et sit</p>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
             </div>
         </div>
