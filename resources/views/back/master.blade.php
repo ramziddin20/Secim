@@ -69,7 +69,7 @@
         <hr class="sidebar-divider">
 
         <li class="nav-item active">
-            <a class="nav-link" href="">
+            <a class="nav-link" href="{{route('advantages.index')}}">
                 <i class="fas fa-fw fa-tachometer-alt"></i>
                 <span>Почему мы</span></a>
         </li>
@@ -77,7 +77,7 @@
         <hr class="sidebar-divider">
 
         <li class="nav-item active">
-            <a class="nav-link" href="">
+            <a class="nav-link" href="{{route('service.index')}}">
                 <i class="fas fa-fw fa-tachometer-alt"></i>
                 <span>Услуга</span></a>
         </li>
@@ -85,7 +85,7 @@
         <hr class="sidebar-divider">
 
         <li class="nav-item active">
-            <a class="nav-link" href="">
+            <a class="nav-link" href="{{route('university.index')}}">
                 <i class="fas fa-fw fa-tachometer-alt"></i>
                 <span>Университет</span></a>
         </li>
@@ -93,7 +93,7 @@
         <hr class="sidebar-divider">
 
         <li class="nav-item active">
-            <a class="nav-link" href="">
+            <a class="nav-link" href="{{route('informationWork.index')}}">
                 <i class="fas fa-fw fa-tachometer-alt"></i>
                 <span>Контакты</span></a>
         </li>

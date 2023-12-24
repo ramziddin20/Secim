@@ -10,7 +10,7 @@ class InformationWork extends Model
     use HasFactory;
     protected $fillable = [
         'street',
-        'phone',
+        'phone_number',
         'email',
     ];
 }

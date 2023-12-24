@@ -43,15 +43,24 @@
 
 <!-- Navbar Start -->
 <div class="container-fluid fixed-top px-0 wow fadeIn" data-wow-delay="0.1s">
+    @if(session()->has('message'))
+        <div class="alert alert-success">
+            {{ session()->get('message') }}
+        </div>
+    @endif
+
     <div class="top-bar row gx-0 align-items-center d-none d-lg-flex">
-        <div class="col-lg-6 px-5 text-start">
-            <small><i class="fa fa-map-marker-alt text-danger me-2"></i>123 Street, New York, USA</small>
-            <small class="ms-4"><i class="fa fa-clock text-danger me-2"></i>9.00 am - 9.00 pm</small>
-        </div>
-        <div class="col-lg-6 px-5 text-end">
-            <small><i class="fa fa-envelope text-danger me-2"></i>info@example.com</small>
-            <small class="ms-4"><i class="fa fa-phone-alt text-danger me-2"></i>+012 345 6789</small>
-        </div>
+        @foreach($informationWork as $informationW)
+            <div class="col-lg-6 px-5 text-start">
+                <small><i class="fa fa-map-marker-alt text-danger me-2"></i>{{$informationW->street}}</small>
+                <small class="ms-4"><i class="fa fa-clock text-danger me-2"></i>{{$informationW->time_work}}</small>
+            </div>
+            <div class="col-lg-6 px-5 text-end">
+                <small><i class="fa fa-envelope text-danger me-2"></i>{{$informationW->email}}</small>
+                <small class="ms-4"><i class="fa fa-phone-alt text-danger me-2"></i>{{$informationW->phone_number}}
+                </small>
+            </div>
+        @endforeach
     </div>
 
     <nav class="navbar navbar-expand-lg navbar-light py-lg-0 px-lg-5 wow fadeIn" data-wow-delay="0.1s">
@@ -104,8 +113,7 @@
                                 <div class="col-lg-8">
                                     <p class="d-inline-block border border-white rounded text-danger fw-semi-bold py-1 px-3 animated slideInDown">
                                         Добро пожаловать в Seçim</p>
-                                    <h1 class="display-1 mb-4 animated slideInDown">Your Financial Status Is Our
-                                        Goal</h1>
+                                    <h1 class="display-1 mb-4 animated slideInDown">{{$slider->title}}</h1>
                                     <a href="" class="btn btn-danger py-3 px-5 animated slideInDown">Explore More</a>
                                 </div>
                             </div>
@@ -140,25 +148,28 @@
                 <p class="d-inline-block border rounded text-danger fw-semi-bold py-1 px-3">О нас</p>
                 <h1 class="display-5 mb-4">Мы помогаем нашим клиентам</h1>
                 <div class="border rounded p-4">
-                    @foreach($abouts as $key => $about)
-                        <nav>
-                            <div class="nav nav-tabs mb-3" id="nav-tab" role="tablist">
+                    <nav>
+                        <div class="nav nav-tabs mb-3" id="nav-tab" role="tablist">
+                            @foreach($abouts as $key => $about)
                                 <button class="nav-link fw-semi-bold {{ $key === 0 ? 'active' : '' }}"
-                                        id="" data-bs-toggle="tab"
-                                        data-bs-target="" type="button" role="tab"
-                                        aria-controls=""
+                                        id="nav-about{{$about->id}}-tab" data-bs-toggle="tab"
+                                        data-bs-target="#nav-about{{$about->id}}" type="button" role="tab"
+                                        aria-controls="nav-about{{$about->id}}"
                                         aria-selected="{{ $key === 0 ? 'true' : 'false' }}">{{$about->title}}
                                 </button>
-                            </div>
-                        </nav>
-                        <div class="tab-content" id="nav-tabContent">
-                            <div class="tab-pane fade show {{ $key === 0 ? 'active' : '' }}" id=""
+                            @endforeach
+                        </div>
+                    </nav>
+                    <div class="tab-content" id="nav-tabContent">
+                        @foreach($abouts as $key => $about)
+                            <div class="tab-pane fade show {{ $key === 0 ? 'active' : '' }}"
+                                 id="nav-about{{$about->id}}"
                                  role="tabpanel"
-                                 aria-labelledby="">
+                                 aria-labelledby="nav-about{{$about->id}}-tab">
                                 <p>{{$about->description}}</p>
                             </div>
-                        </div>
-                    @endforeach
+                        @endforeach
+                    </div>
                 </div>
             </div>
         </div>
@@ -173,7 +184,6 @@
             <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.1s">
                 <p class="d-inline-block border rounded text-danger fw-semi-bold py-1 px-3">Почему выбирают нас!</p>
                 <h1 class="display-5 mb-4">Несколько причин, почему люди выбирают нас!!</h1>
-                <a class="btn btn-danger py-3 px-5" href="">Explore More</a>
             </div>
             <div class="col-lg-6">
                 <div class="row g-4 align-items-center">
@@ -232,14 +242,10 @@
                                 </div>
                             </div>
                             <div class="col-md-6">
-                                <h3 class="mb-4">25 Years Of Experience In Financial Support</h3>
-                                <p class="mb-4">Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit. Aliqu diam
-                                    amet diam et eos. Clita erat ipsum et lorem et sit, sed stet lorem sit clita duo
-                                    justo erat amet.</p>
-                                <p><i class="fa fa-check text-danger me-3"></i>Secured Loans</p>
-                                <p><i class="fa fa-check text-danger me-3"></i>Credit Facilities</p>
-                                <p><i class="fa fa-check text-danger me-3"></i>Cash Advanced</p>
-                                <a href="" class="btn btn-danger py-3 px-5 mt-3">Read More</a>
+                                @foreach($service as $ser)
+                                    <h3 class="mb-4">{{$ser->title}}</h3>
+                                    <p class="mb-4">{{$ser->description}}</p>
+                                @endforeach
                             </div>
                         </div>
                     </div>
@@ -321,42 +327,48 @@
                         <p class="d-inline-block border rounded text-danger fw-semi-bold py-1 px-3">Связаться</p>
                         <h1 class="display-5 mb-5">Запросить обратный звонок</h1>
                     </div>
-                    <div class="row g-3">
-                        <div class="col-sm-6">
-                            <div class="form-floating">
-                                <input type="text" class="form-control" id="name" placeholder="Ваше имя">
-                                <label for="name">Ваше имя</label>
+                    <form action="{{route('contact.store')}}" method="post" enctype="multipart/form-data">
+                        <div class="row g-3">
+                            <div class="col-sm-6">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" name="name" id="name"
+                                           placeholder="Ваше имя">
+                                    <label for="name">Ваше имя</label>
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="form-floating">
-                                <input type="email" class="form-control" id="email" placeholder="Ваш электронной почты">
-                                <label for="email">Ваш электронной почты</label>
+                            <div class="col-sm-6">
+                                <div class="form-floating">
+                                    <input type="email" name="email" class="form-control" id="email"
+                                           placeholder="Ваш электронной почты">
+                                    <label for="email">Ваш электронной почты</label>
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="form-floating">
-                                <input type="text" class="form-control" id="phone_number" placeholder="Твой мобильный">
-                                <label for="phone_number">Твой мобильный</label>
+                            <div class="col-sm-6">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" name="phone_number" id="phone_number"
+                                           placeholder="Твой мобильный">
+                                    <label for="phone_number">Твой мобильный</label>
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="form-floating">
-                                <input type="text" class="form-control" id="country" placeholder="Твоя страна">
-                                <label for="country">Твоя страна</label>
+                            <div class="col-sm-6">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" name="country" id="country"
+                                           placeholder="Твоя страна">
+                                    <label for="country">Твоя страна</label>
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-12">
-                            <div class="form-floating">
+                            <div class="col-12">
+                                <div class="form-floating">
                                 <textarea class="form-control" placeholder="Оставьте сообщение здесь" id="message"
-                                          style="height: 100px"></textarea>
-                                <label for="message">Сообщение</label>
+                                          style="height: 100px" name="description"></textarea>
+                                    <label for="message">Сообщение</label>
+                                </div>
+                            </div>
+                            <div class="col-12 text-center">
+                                <button class="btn btn-danger w-100 py-3" type="submit">Отправить сейчас</button>
                             </div>
                         </div>
-                        <div class="col-12 text-center">
-                            <button class="btn btn-danger w-100 py-3" type="submit">Отправить сейчас</button>
-                        </div>
-                    </div>
+                    </form>
                 </div>
             </div>
         </div>
@@ -373,42 +385,17 @@
             <h1 class="display-5 mb-5">Университеты</h1>
         </div>
         <div class="owl-carousel project-carousel wow fadeInUp" data-wow-delay="0.3s">
-            <div class="project-item pe-5 pb-5">
-                <div class="project-img mb-3">
-                    <img class="img-fluid rounded" src="img/service-1.jpg" alt="">
-                    <a href=""><i class="fa fa-link fa-3x text-danger"></i></a>
+            @foreach($universities as $university)
+                <div class="project-item pe-5 pb-5">
+                    <div class="project-img mb-3">
+                        <img class="img-fluid rounded" src="/images/{{$university->image}}" alt="">
+                        <a href="{{$university->link}}"><i class="fa fa-link fa-3x text-danger"></i></a>
+                    </div>
+                    <div class="project-title">
+                        <h4 class="mb-0">{{$university->title}}</h4>
+                    </div>
                 </div>
-                <div class="project-title">
-                    <h4 class="mb-0">Financial Planning</h4>
-                </div>
-            </div>
-            <div class="project-item pe-5 pb-5">
-                <div class="project-img mb-3">
-                    <img class="img-fluid rounded" src="img/service-2.jpg" alt="">
-                    <a href=""><i class="fa fa-link fa-3x text-danger"></i></a>
-                </div>
-                <div class="project-title">
-                    <h4 class="mb-0">Cash Investment</h4>
-                </div>
-            </div>
-            <div class="project-item pe-5 pb-5">
-                <div class="project-img mb-3">
-                    <img class="img-fluid rounded" src="img/service-3.jpg" alt="">
-                    <a href=""><i class="fa fa-link fa-3x text-danger"></i></a>
-                </div>
-                <div class="project-title">
-                    <h4 class="mb-0">Financial Consultancy</h4>
-                </div>
-            </div>
-            <div class="project-item pe-5 pb-5">
-                <div class="project-img mb-3">
-                    <img class="img-fluid rounded" src="img/service-4.jpg" alt="">
-                    <a href=""><i class="fa fa-link fa-3x text-danger"></i></a>
-                </div>
-                <div class="project-title">
-                    <h4 class="mb-0">Business Loans</h4>
-                </div>
-            </div>
+            @endforeach
         </div>
     </div>
 </div>
@@ -420,9 +407,11 @@
         <div class="row g-5">
             <div class="col-lg-3 col-md-6">
                 <h4 class="text-white mb-4">Контакты</h4>
-                <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>123 Street, New York, USA</p>
-                <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>+012 345 67890</p>
-                <p class="mb-2"><i class="fa fa-envelope me-3"></i>info@example.com</p>
+                @foreach($informationWork as $informationW)
+                    <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>{{$informationW->street}}</p>
+                    <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>{{$informationW->phone_number}}</p>
+                    <p class="mb-2"><i class="fa fa-envelope me-3"></i>{{$informationW->email}}</p>
+                @endforeach
                 <div class="d-flex pt-2">
                     <a class="btn btn-square btn-outline-light rounded-circle me-2" href=""><i
                             class="fab fa-instagram"></i></a>
