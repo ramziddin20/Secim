@@ -4,6 +4,7 @@ use App\Http\Controllers\SliderController;
 use App\Http\Controllers\SocialLinkController;
 use App\Models\Slider;
 use App\Models\SocialLink;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,6 +22,11 @@ Route::get('/', function () {
     $sliders = Slider::all();
     return view('front.index', compact('sliders'));
 });
+
+Route::post('/callback', function (Request $request){
+    dd($request->all());
+})->name('callback.store');
+
 Route::get('admin', function () {
     return view('back.home.index');
 });

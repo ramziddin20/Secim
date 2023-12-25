@@ -349,6 +349,8 @@
     <div class="container pt-5">
         <div class="row justify-content-center">
             <div class="col-lg-7">
+                <form class="form-control" action="{{ route('callback.store') }}" method="POST">
+                    @csrf
                 <div class="bg-white border rounded p-4 p-sm-5 wow fadeInUp" data-wow-delay="0.5s">
                     <div class="text-center mx-auto wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
                         <p class="d-inline-block border rounded text-danger fw-semi-bold py-1 px-3">Связаться</p>
@@ -357,31 +359,31 @@
                     <div class="row g-3">
                         <div class="col-sm-6">
                             <div class="form-floating">
-                                <input type="text" class="form-control" id="name" placeholder="Ваше имя">
+                                <input type="text" name="name" class="form-control" id="name" placeholder="Ваше имя">
                                 <label for="name">Ваше имя</label>
                             </div>
                         </div>
                         <div class="col-sm-6">
                             <div class="form-floating">
-                                <input type="email" class="form-control" id="email" placeholder="Ваш электронной почты">
+                                <input type="email" name="email" class="form-control" id="email" placeholder="Ваш электронной почты">
                                 <label for="email">Ваш электронной почты</label>
                             </div>
                         </div>
                         <div class="col-sm-6">
                             <div class="form-floating">
-                                <input type="text" class="form-control" id="phone_number" placeholder="Твой мобильный">
+                                <input name="phone" type="text" class="form-control" id="phone_number" placeholder="Твой мобильный">
                                 <label for="phone_number">Твой мобильный</label>
                             </div>
                         </div>
                         <div class="col-sm-6">
                             <div class="form-floating">
-                                <input type="text" class="form-control" id="country" placeholder="Твоя страна">
+                                <input name="country" type="text" class="form-control" id="country" placeholder="Твоя страна">
                                 <label for="country">Твоя страна</label>
                             </div>
                         </div>
                         <div class="col-12">
                             <div class="form-floating">
-                                <textarea class="form-control" placeholder="Оставьте сообщение здесь" id="message"
+                                <textarea name="message" class="form-control" placeholder="Оставьте сообщение здесь" id="message"
                                           style="height: 100px"></textarea>
                                 <label for="message">Сообщение</label>
                             </div>
@@ -391,6 +393,7 @@
                         </div>
                     </div>
                 </div>
+                </form>
             </div>
         </div>
     </div>
