@@ -1,10 +1,17 @@
 <?php
 
+use App\Http\Controllers\AboutController;
+use App\Http\Controllers\ContactController;
+use App\Http\Controllers\InformationWorkController;
+use App\Http\Controllers\OurSuperiorityController;
+use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\SliderController;
-use App\Http\Controllers\SocialLinkController;
+use App\Http\Controllers\UniversityController;
+use App\Models\About;
+use App\Models\InformationWork;
+use App\Models\Service;
 use App\Models\Slider;
-use App\Models\SocialLink;
-use Illuminate\Http\Request;
+use App\Models\University;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -12,7 +19,7 @@ use Illuminate\Support\Facades\Route;
 | Web Routes
 |--------------------------------------------------------------------------
 |
-| Here is where you can register web routes for your application. These
+| Here is where you can register web routes for your informationwork. These
 | routes are loaded by the RouteServiceProvider and all of them will
 | be assigned to the "web" middleware group. Make something great!
 |
@@ -20,13 +27,14 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     $sliders = Slider::all();
-    return view('front.index', compact('sliders'));
+    $universities = University::all();
+    $abouts = About::all();
+    $service = Service::all();
+    $informationWork = InformationWork::all();
+    return view('front.index', compact('sliders', 'abouts', 'service', 'informationWork', 'universities'));
 });
-
-Route::post('/callback', function (Request $request){
-    dd($request->all());
-})->name('callback.store');
-
+Route::get('/contact', [ContactController::class])->name('contact.store');
+Route::post('/contactsend', [ContactController::class, 'store'])->name('contact.store');
 Route::get('admin', function () {
     return view('back.home.index');
 });
@@ -34,9 +42,12 @@ Route::get('admin', function () {
 
 // Backend
 Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
-    Route::get('/slider', [SliderController::class, "index"])->name('slider.index');
-    Route::get('/slider/create', [SliderController::class, "create"])->name('create');
-    Route::post('/slider/upload', [SliderController::class, "store"])->name('slider.store');
+    Route::resource('/slider', SliderController::class);
+    Route::resource('/about', AboutController::class);
+    Route::resource('/advantages', OurSuperiorityController::class);
+    Route::resource('/service', ServiceController::class);
+    Route::resource('/informationWork', InformationWorkController::class);
+    Route::resource('/university', UniversityController::class);
 });
 Auth::routes();
 

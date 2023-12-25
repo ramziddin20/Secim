@@ -9,7 +9,7 @@ class OurSuperiority extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'text',
+        'title',
         'description',
     ];
 }
