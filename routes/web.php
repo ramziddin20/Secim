@@ -12,6 +12,7 @@ use App\Models\InformationWork;
 use App\Models\Service;
 use App\Models\Slider;
 use App\Models\University;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -32,7 +33,7 @@ Route::get('/', function () {
     $service = Service::all();
     $informationWork = InformationWork::all();
     return view('front.index', compact('sliders', 'abouts', 'service', 'informationWork', 'universities'));
-});
+})->name('front.index');
 Route::get('/contact', [ContactController::class])->name('contact.store');
 Route::post('/contactsend', [ContactController::class, 'store'])->name('contact.store');
 Route::get('admin', function () {

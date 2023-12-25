@@ -328,6 +328,7 @@
                         <h1 class="display-5 mb-5">Запросить обратный звонок</h1>
                     </div>
                     <form action="{{route('contact.store')}}" method="post" enctype="multipart/form-data">
+                        @csrf
                         <div class="row g-3">
                             <div class="col-sm-6">
                                 <div class="form-floating">
