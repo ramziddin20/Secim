@@ -2,14 +2,15 @@
 <html lang="en">
 
 <head>
-    <meta charset="utf-8">
-    <title>Finanza - Financial Services Website Template</title>
-    <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <meta content="" name="keywords">
-    <meta content="" name="description">
-    <link rel="shortcut icon" href="{{asset('img/transperentoq.png')}}" type="image/png">
-    <meta property="og:image" content="img/transperentoq.png">
-
+    @foreach($seos as $seo)
+        <meta charset="utf-8">
+        <title>{{$seo->title}}</title>
+        <meta content="width=device-width, initial-scale=1.0" name="viewport">
+        <meta content="{{$seo->keywords}}" name="keywords">
+        <meta content="{{$seo->description}}" name="description">
+        <link rel="shortcut icon" href="{{asset('img/transperentoq.png')}}" type="image/png">
+        <meta property="og:image" content="img/transperentoq.png">
+    @endforeach
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -43,12 +44,6 @@
 
 <!-- Navbar Start -->
 <div class="container-fluid fixed-top px-0 wow fadeIn" data-wow-delay="0.1s">
-    @if(session()->has('message'))
-        <div class="alert alert-success">
-            {{ session()->get('message') }}
-        </div>
-    @endif
-
     <div class="top-bar row gx-0 align-items-center d-none d-lg-flex">
         @foreach($informationWork as $informationW)
             <div class="col-lg-6 px-5 text-start">
@@ -74,24 +69,31 @@
             <div class="navbar-nav ms-auto p-4 p-lg-0">
                 <a href="#" class="nav-item nav-link active">Главный</a>
                 <a href="#about" class="nav-item nav-link">О нас</a>
-                <a href="#whyChoosingUs" class="nav-item nav-link">Почему выбирают нас</a>
                 <a href="#service" class="nav-item nav-link">Услуги</a>
                 <a href="#university" class="nav-item nav-link">Университет</a>
                 <a href="#support" class="nav-item nav-link">Контакт</a>
             </div>
             <div class="d-none d-lg-flex ms-2">
-                <a class="btn btn-light btn-sm-square rounded-circle ms-3" href="">
-                    <small class="fab fa-instagram text-danger"></small>
-                </a>
-                <a class="btn btn-light btn-sm-square rounded-circle ms-3" href="">
-                    <small class="fab fa-facebook text-danger"></small>
-                </a>
-                <a class="btn btn-light btn-sm-square rounded-circle ms-3" href="">
-                    <small class="fab fa-youtube text-danger"></small>
-                </a>
-                <a class="btn btn-light btn-sm-square rounded-circle ms-3" href="">
-                    <small class="fab fa-telegram text-danger"></small>
-                </a>
+                @foreach($instagram as $insta)
+                    <a class="btn btn-light btn-sm-square rounded-circle ms-3" href="{{$insta->link}}">
+                        <small class="fab fa-instagram text-danger"></small>
+                    </a>
+                @endforeach
+                @foreach($facebook as $face)
+                    <a class="btn btn-light btn-sm-square rounded-circle ms-3" href="{{$face->link}}">
+                        <small class="fab fa-facebook text-danger"></small>
+                    </a>
+                @endforeach
+                @foreach($youtube as $you)
+                    <a class="btn btn-light btn-sm-square rounded-circle ms-3" href="{{$you->link}}">
+                        <small class="fab fa-youtube text-danger"></small>
+                    </a>
+                @endforeach
+                @foreach($telegram as $tel)
+                    <a class="btn btn-light btn-sm-square rounded-circle ms-3" href="{{$tel->link}}">
+                        <small class="fab fa-telegram text-danger"></small>
+                    </a>
+                @endforeach
             </div>
         </div>
     </nav>
@@ -114,7 +116,8 @@
                                     <p class="d-inline-block border border-white rounded text-danger fw-semi-bold py-1 px-3 animated slideInDown">
                                         Добро пожаловать в Seçim</p>
                                     <h1 class="display-1 mb-4 animated slideInDown">{{$slider->title}}</h1>
-                                    <a href="" class="btn btn-danger py-3 px-5 animated slideInDown">Explore More</a>
+                                    <a href="https://www.secimasia.com/homepage"
+                                       class="btn btn-danger py-3 px-5 animated slideInDown">Перейти</a>
                                 </div>
                             </div>
                         </div>
@@ -176,51 +179,6 @@
     </div>
 </div>
 <!-- About End -->
-
-<!-- Features Start -->
-<div class="container-xxl feature py-5" id="whyChoosingUs">
-    <div class="container">
-        <div class="row g-5 align-items-center">
-            <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.1s">
-                <p class="d-inline-block border rounded text-danger fw-semi-bold py-1 px-3">Почему выбирают нас!</p>
-                <h1 class="display-5 mb-4">Несколько причин, почему люди выбирают нас!!</h1>
-            </div>
-            <div class="col-lg-6">
-                <div class="row g-4 align-items-center">
-                    <div class="col-md-6">
-                        <div class="row g-4">
-                            <div class="col-12 wow fadeIn" data-wow-delay="0.3s">
-                                <div class="feature-box border rounded p-4">
-                                    <i class="fa fa-check fa-3x text-danger mb-3"></i>
-                                    <h4 class="mb-3">Fast Executions</h4>
-                                    <p class="mb-3">Clita erat ipsum et lorem et sit, sed stet lorem sit clita duo justo
-                                        erat amet</p>
-                                </div>
-                            </div>
-                            <div class="col-12 wow fadeIn" data-wow-delay="0.5s">
-                                <div class="feature-box border rounded p-4">
-                                    <i class="fa fa-check fa-3x text-danger mb-3"></i>
-                                    <h4 class="mb-3">Guide & Support</h4>
-                                    <p class="mb-3">Clita erat ipsum et lorem et sit, sed stet lorem sit clita duo justo
-                                        erat amet</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6 wow fadeIn" data-wow-delay="0.7s">
-                        <div class="feature-box border rounded p-4">
-                            <i class="fa fa-check fa-3x text-danger mb-3"></i>
-                            <h4 class="mb-3">Financial Secure</h4>
-                            <p class="mb-3">Clita erat ipsum et lorem et sit, sed stet lorem sit clita duo justo erat
-                                amet</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- Features End -->
 
 
 <!-- Service Start -->
@@ -316,7 +274,6 @@
 </div>
 <!-- Service End -->
 
-
 <!-- Callback Start -->
 <div class="container-fluid callback my-5 pt-5" id="support">
     <div class="container pt-5">
@@ -347,15 +304,15 @@
                             <div class="col-sm-6">
                                 <div class="form-floating">
                                     <input type="text" class="form-control" name="phone_number" id="phone_number"
-                                           placeholder="Твой мобильный">
-                                    <label for="phone_number">Твой мобильный</label>
+                                           placeholder="Ваше мобильный">
+                                    <label for="phone_number">Ваше мобильный</label>
                                 </div>
                             </div>
                             <div class="col-sm-6">
                                 <div class="form-floating">
                                     <input type="text" class="form-control" name="country" id="country"
-                                           placeholder="Твоя страна">
-                                    <label for="country">Твоя страна</label>
+                                           placeholder="Ваше страна">
+                                    <label for="country">Ваше страна</label>
                                 </div>
                             </div>
                             <div class="col-12">
@@ -414,14 +371,22 @@
                     <p class="mb-2"><i class="fa fa-envelope me-3"></i>{{$informationW->email}}</p>
                 @endforeach
                 <div class="d-flex pt-2">
-                    <a class="btn btn-square btn-outline-light rounded-circle me-2" href=""><i
-                            class="fab fa-instagram"></i></a>
-                    <a class="btn btn-square btn-outline-light rounded-circle me-2" href=""><i
-                            class="fab fa-facebook-f"></i></a>
-                    <a class="btn btn-square btn-outline-light rounded-circle me-2" href=""><i
-                            class="fab fa-youtube"></i></a>
-                    <a class="btn btn-square btn-outline-light rounded-circle me-2" href=""><i
-                            class="fab fa-telegram"></i></a>
+                    @foreach($instagram as $insta)
+                        <a class="btn btn-square btn-outline-light rounded-circle me-2" href="{{$insta->link}}"><i
+                                class="fab fa-instagram"></i></a>
+                    @endforeach
+                    @foreach($facebook as $face)
+                        <a class="btn btn-square btn-outline-light rounded-circle me-2" href="{{$face->link}}"><i
+                                class="fab fa-facebook-f"></i></a>
+                    @endforeach
+                    @foreach($youtube as $you)
+                        <a class="btn btn-square btn-outline-light rounded-circle me-2" href="{{$you->link}}"><i
+                                class="fab fa-youtube"></i></a>
+                    @endforeach
+                    @foreach($telegram as $tel)
+                        <a class="btn btn-square btn-outline-light rounded-circle me-2" href="{{$tel->link}}"><i
+                                class="fab fa-telegram"></i></a>
+                    @endforeach
                 </div>
             </div>
             <div class="col-lg-3 col-md-6">
@@ -434,7 +399,6 @@
                 <h4 class="text-white mb-4">Быстрые ссылки</h4>
                 <a class="btn btn-link" href="#home">Главный</a>
                 <a class="btn btn-link" href="#about">О нас</a>
-                <a class="btn btn-link" href="#whyChoosingUs">Почему выбирают нас</a>
                 <a class="btn btn-link" href="#service">Услуги</a>
                 <a class="btn btn-link" href="#university">Университет</a>
                 <a class="btn btn-link" href="#support">Контакт</a>

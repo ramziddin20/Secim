@@ -37,7 +37,7 @@
                        placeholder="Писать Электронная почта..." value="{{$informationWork->email}}">
             </div>
             <button type="submit" class="btn btn-primary">Submit</button>
-            <a class="btn btn-secondary" href="{{route('service.index')}}">Cancel</a>
+            <a class="btn btn-secondary" href="{{route('informationWork.index')}}">Cancel</a>
         </form>
     </div>
 @endsection

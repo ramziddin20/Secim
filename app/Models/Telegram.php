@@ -8,4 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Telegram extends Model
 {
     use HasFactory;
+    protected $fillable=[
+        'link'
+    ];
 }

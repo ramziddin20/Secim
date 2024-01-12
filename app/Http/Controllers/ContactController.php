@@ -7,10 +7,12 @@ use Illuminate\Http\Request;
 
 class ContactController extends Controller
 {
-    public function contact()
+    public function index()
     {
-        return view('front.index');
+        $contacts = Contact::orderBy('created_at', 'DESC')->get();
+        return view('back.contact.index', compact('contacts'));
     }
+
 
     public function store(Request $request)
     {

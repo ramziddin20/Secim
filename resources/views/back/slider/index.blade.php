@@ -21,7 +21,7 @@
                         <div class="card mb-3" style="max-width: 640px;">
                             <div class="row no-gutters">
                                 <div class="col-md-4">
-                                    <img src="/images/{{$slider->image}}" class="card-img" alt="..."
+                                    <img src="{{asset('storage/' . $slider->image)}}" class="card-img" alt="..."
                                          style="width: 180px; height: 130px; ">
                                 </div>
                                 <div class="col-md-8">

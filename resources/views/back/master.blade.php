@@ -53,6 +53,14 @@
         <hr class="sidebar-divider">
 
         <li class="nav-item active">
+            <a class="nav-link" href="{{route('seo.index')}}">
+                <i class="fas fa-fw fa-tachometer-alt"></i>
+                <span>Сео</span></a>
+        </li>
+
+        <hr class="sidebar-divider">
+
+        <li class="nav-item active">
             <a class="nav-link" href="{{route('slider.index')}}">
                 <i class="fas fa-fw fa-tachometer-alt"></i>
                 <span>Слайдер</span></a>
@@ -101,7 +109,7 @@
         <hr class="sidebar-divider">
 
         <li class="nav-item active">
-            <a class="nav-link" href="">
+            <a class="nav-link" href="{{route('contact.index')}}">
                 <i class="fas fa-fw fa-tachometer-alt"></i>
                 <span>Заявка</span></a>
         </li>
@@ -116,10 +124,10 @@
             </a>
             <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
-                    <a class="collapse-item" href="">Инстаграм</a>
-                    <a class="collapse-item" href="">Телеграмма</a>
-                    <a class="collapse-item" href="">Фейсбук</a>
-                    <a class="collapse-item" href="">YouTube</a>
+                    <a class="collapse-item" href="{{route('instagram.index')}}">Инстаграм</a>
+                    <a class="collapse-item" href="{{route('telegram.index')}}">Телеграмма</a>
+                    <a class="collapse-item" href="{{route('facebook.index')}}">Фейсбук</a>
+                    <a class="collapse-item" href="{{route('youtube.index')}}">YouTube</a>
                 </div>
             </div>
         </li>
