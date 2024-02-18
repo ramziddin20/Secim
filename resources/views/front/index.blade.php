@@ -346,7 +346,8 @@
             @foreach($universities as $university)
                 <div class="project-item pe-5 pb-5">
                     <div class="project-img mb-3">
-                        <img class="img-fluid rounded" src="{{asset('storage/'.$university->image)}}" alt="">
+                        <img class="img-fluid rounded" src="{{asset('storage/'.$university->image)}}" alt=""
+                             style="height: 900px;  display: block; margin-left: auto; margin-right: auto; width: 100%;">
                         <a href="{{$university->link}}"><i class="fa fa-link fa-3x text-danger"></i></a>
                     </div>
                     <div class="project-title">
