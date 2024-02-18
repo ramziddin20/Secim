@@ -21,12 +21,13 @@
                         <div class="card mb-3" style="max-width: 640px;">
                             <div class="row no-gutters">
                                 <div class="col-md-4">
-                                    <img src="/images/{{$university->image}}" class="card-img" alt="..."
+                                    <img src="{{ asset('storage/'.$university->image)}}" class="card-img" alt="..."
                                          style="width: 180px; height: 130px; ">
                                 </div>
                                 <div class="col-md-8">
                                     <div class="card-body">
                                         <h5 class="card-title">{{$university->title}}</h5>
+                                        <h5 class="card-title">{{$university->link}}</h5>
                                         <form action="{{route('university.destroy',$university->id)}}" method="post">
                                             @csrf
                                             @method('delete')

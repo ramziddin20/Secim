@@ -19,7 +19,9 @@
             </div>
             <div class="form-group">
                 <label for="text" class="form-label">Текст длинный</label>
-                <textarea class="form-control" name="description" id="text" cols="30" rows="10" placeholder="Писать длинный текст">{{$service->description}}</textarea>
+                <textarea class="form-control" name="description" id="text" cols="30" rows="10" placeholder="Писать длинный текст">
+                    {{$service->description}}
+                </textarea>
             </div>
             <button type="submit" class="btn btn-primary">Submit</button>
             <a class="btn btn-secondary" href="{{route('service.index')}}">Cancel</a>

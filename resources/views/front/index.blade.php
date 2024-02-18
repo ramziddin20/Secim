@@ -107,7 +107,7 @@
         <div class="carousel-inner">
             @foreach($sliders as $key => $slider)
                 <div class="carousel-item {{ $key === 0 ? 'active' : '' }}">
-                    <img class="w-100 align-items-center" src="/images/{{$slider->image}}" alt="Image"
+                    <img class="w-100 align-items-center" src="{{asset('storage/'.$slider->image)}}" alt="Image"
                          style="height: 900px;  display: block; margin-left: auto; margin-right: auto; width: 100%;">
                     <div class="carousel-caption">
                         <div class="container">
@@ -346,7 +346,7 @@
             @foreach($universities as $university)
                 <div class="project-item pe-5 pb-5">
                     <div class="project-img mb-3">
-                        <img class="img-fluid rounded" src="/images/{{$university->image}}" alt="">
+                        <img class="img-fluid rounded" src="{{asset('storage/'.$university->image)}}" alt="">
                         <a href="{{$university->link}}"><i class="fa fa-link fa-3x text-danger"></i></a>
                     </div>
                     <div class="project-title">

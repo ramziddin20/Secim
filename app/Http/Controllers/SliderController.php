@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Slider;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 
 class SliderController extends Controller
@@ -44,18 +43,16 @@ class SliderController extends Controller
     {
 
         $sliders = Slider::findOrFail($id);
-        $data = $request->all();
-        $image = Storage::put('/images', $data['image']);
-
-        $request->validate([
-            'title' => 'required',
-            'image' => 'required|image|mimes:jpg,jpeg,png,gif,webp,svg|max:5120',
+        $data = $request->validate([
+            'title' => '',
+            'image' => 'image:png,jpg,jpeg,webp',
         ]);
+        if (array_key_exists('image', $data)) {
+            $data['image'] = Storage::put('/images', $data['image']);
+        }
 
-        $sliders->update([
-            'title' => $data['title'],
-            'image' => $image,
-        ]);
+
+        $sliders->update($data);
         return redirect()->route('slider.index')->with('message', "This is Success Edited");
     }
 

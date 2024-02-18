@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Slider;
 use App\Models\University;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
 
 class UniversityController extends Controller
 {
@@ -21,21 +23,14 @@ class UniversityController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate([
-            'title' => 'required',
-            'link' => 'required',
-            'image' => 'required|image|mimes:jpg,jpeg,png,gif,webp,svg|max:5120',
+        $data = $request->all();
+        $image = Storage::put('/images', $data['image']);
+
+        University::create([
+            'title' => $data['title'],
+            'link' => $data['link'],
+            'image' => $image,
         ]);
-
-        $input = $request->all();
-
-        if ($image = $request->file('image')) {
-            $destinationPath = 'images/';
-            $profileImage = date('YmdHis') . '.' . $image->getClientOriginalExtension();
-            $image->move($destinationPath, $profileImage);
-            $input['image'] = $profileImage;
-        }
-        University::create($input);
 
 
         return redirect()->route('university.index')->with('message', "This is Success Created");
@@ -51,19 +46,18 @@ class UniversityController extends Controller
     public function update(Request $request, $id)
     {
 
-        $universities = University::findOrFail($id);
-        $universities->title = $request->input('title');
-        $universities->title = $request->input('link');
-        if ($image = $request->file('image')) {
-            $destinationPath = 'images/';
-            if (File::exists($destinationPath)) {
-                File::delete($destinationPath);
-            }
-            $profileImage = date('YmdHis') . '.' . $image->getClientOriginalExtension();
-            $image->move($destinationPath, $profileImage);
-            $input['image'] = $profileImage;
+        $sliders = University::findOrFail($id);
+        $data = $request->validate([
+            'title' => '',
+            'link' => '',
+            'image' => 'image:png,jpg,jpeg,webp',
+        ]);
+        if (array_key_exists('image', $data)) {
+            $data['image'] = Storage::put('/images', $data['image']);
         }
-        $universities->update($input);
+
+
+        $sliders->update($data);
         return redirect()->route('university.index')->with('message', "This is Success Edited");
     }
 
