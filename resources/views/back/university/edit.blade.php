@@ -18,10 +18,10 @@
                        placeholder="Писать Текст" value="{{$universities->title}}">
             </div>
             <div class="form-group">
-                <label for="exampleInputEmail1">Текст для слайдера</label>
+                <label for="exampleInputEmail1">Сылка</label>
                 <input type="text" name="link" class="form-control" id="exampleInputEmail1"
                        aria-describedby="emailHelp"
-                       placeholder="Писать Текст" value="{{$universities->link}}">
+                       placeholder="Изменит сылку" value="{{$universities->link}}">
             </div>
             <div class="mb-3">
                 <label for="formFile" class="form-label">Выбирите картинку</label>

@@ -24,10 +24,10 @@
                        placeholder="Писать Текст">
             </div>
             <div class="form-group">
-                <label for="exampleInputEmail1">Текст для сылки</label>
+                <label for="exampleInputEmail1">Сылка</label>
                 <input type="text" name="link" class="form-control" id="exampleInputEmail1"
                        aria-describedby="emailHelp"
-                       placeholder="Писать Текст">
+                       placeholder="Ставит сылку">
             </div>
             <div class="mb-3">
                 <label for="formFile" class="form-label">Выбирите картинку</label>
