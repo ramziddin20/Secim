@@ -116,7 +116,7 @@
                                     <p class="d-inline-block border border-white rounded text-danger fw-semi-bold py-1 px-3 animated slideInDown">
                                         Добро пожаловать в Seçim</p>
                                     <h1 class="display-1 mb-4 animated slideInDown">{{$slider->title}}</h1>
-                                    <a href="https://www.secimasia.com/homepage"
+                                    <a href="https://apply.secimasia.com/homepage"
                                        class="btn btn-danger py-3 px-5 animated slideInDown">Перейти</a>
                                 </div>
                             </div>
